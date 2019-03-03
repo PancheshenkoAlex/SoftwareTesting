@@ -1,4 +1,6 @@
-public class HelloWorld {
+package ru.sftr.SoftwareTesting.Sandbox;
+
+public class HelloWorldEdited {
 
     public static void main(String[] args) {
         
