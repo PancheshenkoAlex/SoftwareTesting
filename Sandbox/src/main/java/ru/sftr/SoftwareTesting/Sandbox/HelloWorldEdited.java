@@ -7,12 +7,9 @@ public class HelloWorldEdited {
         hello("Alex");
         hello("world");
 
-        Square square = new Square();
-        square.length = 1.2;
+        Square square = new Square(1.2);
+        Rectangle rectangle = new Rectangle(2, 3);
 
-        Rectangle rectangle = new Rectangle();
-        rectangle.lengthA = 2;
-        rectangle.lengthB = 3;
         System.out.println("Площадь квадрата со стороной " + square.length + " равна " + area(square));
         System.out.println("Площадь прямоугольника со стороной а = " + rectangle.lengthA + " и b = " + rectangle.lengthB + " равна " + area(rectangle));
     }
