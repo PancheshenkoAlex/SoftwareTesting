@@ -6,24 +6,28 @@ public class HelloWorldEdited {
 
         hello("Alex");
         hello("world");
-        double l = 1.2;
-        double a = 2, b = 3;
-        System.out.println("Площадь квадрата со стороной " + l + " равна " + area(l));
-        System.out.println("Площадь прямоугольника со стороной а = " + a + " и b = " + b + " равна " + area(a, b))
-        ;
+
+        Square square = new Square();
+        square.length = 1.2;
+
+        Rectangle rectangle = new Rectangle();
+        rectangle.lengthA = 2;
+        rectangle.lengthB = 3;
+        System.out.println("Площадь квадрата со стороной " + square.length + " равна " + area(square));
+        System.out.println("Площадь прямоугольника со стороной а = " + rectangle.lengthA + " и b = " + rectangle.lengthB + " равна " + area(rectangle));
     }
 
     public static void hello(String name) {
         System.out.println("Hello" + ' ' + name + "!");
     }
 
-    public static double area(double len) {
-        double areaSquare = len * len;
+    public static double area(Square a) {
+        double areaSquare = a.length * a.length;
         return areaSquare;
     }
 
-    public static double area(double a, double b){
-        double areaRectangle = a * b;
+    public static double area(Rectangle r) {
+        double areaRectangle = r.lengthA * r.lengthB;
         return areaRectangle;
     }
 
