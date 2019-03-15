@@ -13,19 +13,21 @@ public class GroupCreationTests {
     public void setUp() throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
         login("admin", "secret");
     }
 
-    private void login(String name, String pass) {
+    private void login(String loginName, String pass) {
         wd.get("http://localhost/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(name);
+        wd.findElement(By.name("user")).sendKeys(loginName);
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys(pass);
         wd.findElement(By.xpath("//input[@value='LOGIN']")).click();
     }
+
 
     @Test
     public void testGroupCreation() throws Exception {
@@ -35,7 +37,7 @@ public class GroupCreationTests {
         fillGroupForm("Group_1", "test", "test");
         submitGroupForm();
         returnToGroupPage();
-            }
+    }
 
     private void returnToGroupPage() {
         wd.findElement(By.linkText("group page")).click();
@@ -64,6 +66,7 @@ public class GroupCreationTests {
     private void goToGroupPage() {
         wd.findElement(By.linkText("GROUPS")).click();
     }
+
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
