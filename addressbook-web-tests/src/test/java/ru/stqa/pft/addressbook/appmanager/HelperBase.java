@@ -25,9 +25,7 @@ public class HelperBase {
     }
 
     protected void selectDropdownValue(By locator, String dropdownValue) {
-        wd.findElement(locator).click();
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(dropdownValue);
-        click(By.name("new_group"));
+        new Select(wd.findElement(locator)).selectByVisibleText(dropdownValue);
     }
 
     public boolean isAlertPresent() {
