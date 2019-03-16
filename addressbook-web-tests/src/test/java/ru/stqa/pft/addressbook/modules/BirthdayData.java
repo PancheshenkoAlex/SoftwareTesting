@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.modules;
 
 public class BirthdayData {
     private final String bDay;
