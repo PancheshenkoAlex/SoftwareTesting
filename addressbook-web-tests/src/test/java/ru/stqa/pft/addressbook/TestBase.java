@@ -217,4 +217,12 @@ public class TestBase {
     protected void goToGroupPage() {
         wd.findElement(By.linkText("GROUPS")).click();
     }
+
+    protected void deleteGroup() {
+        wd.findElement(By.name("delete")).click();
+    }
+
+    protected void selectFirstGroup() {
+        wd.findElement(By.name("selected[]")).click();
+    }
 }
