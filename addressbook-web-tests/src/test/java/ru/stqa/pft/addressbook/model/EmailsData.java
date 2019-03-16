@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.modules;
+package ru.stqa.pft.addressbook.model;
 
 public class EmailsData {
     private final String email_1;

@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import ru.stqa.pft.addressbook.modules.*;
+import ru.stqa.pft.addressbook.model.*;
 
 import java.util.concurrent.TimeUnit;
 
