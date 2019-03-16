@@ -25,6 +25,7 @@ public class HelperBase {
     }
 
     protected void selectDropdownValue(By locator, String dropdownValue) {
+        click(locator);
         new Select(wd.findElement(locator)).selectByVisibleText(dropdownValue);
     }
 

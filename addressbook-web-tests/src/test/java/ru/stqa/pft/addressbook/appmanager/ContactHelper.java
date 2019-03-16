@@ -71,4 +71,31 @@ public class ContactHelper extends HelperBase {
     public void submitNewContactForm() {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
+
+    public void selectFirstContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void clickRemoveButton() {
+        click(By.xpath("//input[@value = 'DELETE']"));
+        wd.switchTo().alert().accept();
+    }
+
+
+    public void selectAllRecords() {
+        click(By.id("MassCB"));
+    }
+
+    public void clickEditButton() {
+        click(By.xpath("//img[@title = 'EDIT']"));
+    }
+
+    public void clickUpdateButton() {
+        click(By.xpath("//input[@value = 'UPDATE']"));
+    }
+
+    public void clickDeleteWhileModification() {
+        click(By.xpath("//input[@value = 'DELETE']"));
+
+    }
 }
