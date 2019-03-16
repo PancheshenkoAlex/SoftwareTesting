@@ -1,11 +1,11 @@
 package ru.stqa.pft.addressbook;
 
-public class aniversaryDataGroup {
+public class AniversaryData {
     private final String aDay;
     private final String aMonth;
     private final String aYear;
 
-    public aniversaryDataGroup(String aDay, String aMonth, String aYear) {
+    public AniversaryData(String aDay, String aMonth, String aYear) {
         this.aDay = aDay;
         this.aMonth = aMonth;
         this.aYear = aYear;

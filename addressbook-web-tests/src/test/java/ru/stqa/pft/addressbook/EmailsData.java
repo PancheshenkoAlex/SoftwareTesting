@@ -1,11 +1,11 @@
 package ru.stqa.pft.addressbook;
 
-public class emailsGroup {
+public class EmailsData {
     private final String email_1;
     private final String email_2;
     private final String email_3;
 
-    public emailsGroup(String email_1, String email_2, String email_3) {
+    public EmailsData(String email_1, String email_2, String email_3) {
         this.email_1 = email_1;
         this.email_2 = email_2;
         this.email_3 = email_3;

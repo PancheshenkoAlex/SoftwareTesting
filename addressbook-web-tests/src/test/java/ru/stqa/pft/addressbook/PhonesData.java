@@ -1,13 +1,13 @@
 package ru.stqa.pft.addressbook;
 
-public class phonesGroup {
+public class PhonesData {
     private final String homePhone;
     private final String mobilePhone;
     private final String workPhone;
     private final String fax;
     private final String phone2;
 
-    public phonesGroup(String homePhone, String mobilePhone, String workPhone, String fax, String phone2) {
+    public PhonesData(String homePhone, String mobilePhone, String workPhone, String fax, String phone2) {
         this.homePhone = homePhone;
         this.mobilePhone = mobilePhone;
         this.workPhone = workPhone;

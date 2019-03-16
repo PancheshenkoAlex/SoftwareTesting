@@ -1,10 +1,10 @@
 package ru.stqa.pft.addressbook;
 
-public class addressessGroup {
+public class AddressData {
     private final String addressFist;
     private final String adressSecond;
 
-    public addressessGroup(String addressFist, String adressSecond) {
+    public AddressData(String addressFist, String adressSecond) {
         this.addressFist = addressFist;
         this.adressSecond = adressSecond;
     }

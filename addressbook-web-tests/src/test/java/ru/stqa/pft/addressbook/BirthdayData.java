@@ -1,11 +1,11 @@
 package ru.stqa.pft.addressbook;
 
-public class birthdayGroup {
+public class BirthdayData {
     private final String bDay;
     private final String bMonth;
     private final String bYear;
 
-    public birthdayGroup(String bDay, String bMonth, String bYear) {
+    public BirthdayData(String bDay, String bMonth, String bYear) {
         this.bDay = bDay;
         this.bMonth = bMonth;
         this.bYear = bYear;

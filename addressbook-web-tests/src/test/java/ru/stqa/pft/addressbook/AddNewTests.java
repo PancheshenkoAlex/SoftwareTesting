@@ -30,25 +30,30 @@ public class AddNewTests {
         wd.findElement(By.xpath("//input[@value='LOGIN']")).click();
     }
 
+
     @Test
     public void testUntitledTestCase() throws Exception {
         goToAddNewPage();
-        fillFirstName("Aleksandra");
-        fillMiddleName("n/a");
-        fillLastName("Pancheshenko");
-        fillNickName("n/a");
+        fillPersonalData(new PersonalData("Aleksandra", "n/a", "Pancheshenko", "n/a"));
         addTitle("testTitle");
         fillCompanyName("testCompany");
-        fillAddressInf(new addressessGroup("Poland", "Poland"));
-        fillPhones(new phonesGroup("111", "222", "333", "444", "555"));
-        fillEmails(new emailsGroup("pancheshenko.alex@gmail.com", "pancheshenkoalex@gmail.com", "pancheshenkoa.lex@gmail.com"));
+        fillAddressInf(new AddressData("Poland", "Poland"));
+        fillPhones(new PhonesData("111", "222", "333", "444", "555"));
+        fillEmails(new EmailsData("pancheshenko.alex@gmail.com", "pancheshenkoalex@gmail.com", "pancheshenkoa.lex@gmail.com"));
         fillHomePage("n/a");
-        fillBirthdayInfo(new birthdayGroup("28", "JULY", "1988"));
-        fillAniversaryInfo(new aniversaryDataGroup("1", "JANUARY", "1988"));
+        fillBirthdayInfo(new BirthdayData("28", "JULY", "1988"));
+        fillAniversaryInfo(new AniversaryData("1", "JANUARY", "1988"));
         addGroup("Group_1");
         addNotes("n/a");
         submitForm();
 
+    }
+
+    private void fillPersonalData(PersonalData personalData) {
+        fillFirstName(personalData.getName());
+        fillMiddleName(personalData.getMiddleName());
+        fillLastName(personalData.getLstName());
+        fillNickName(personalData.getNickName());
     }
 
     private void submitForm() {
@@ -67,7 +72,7 @@ public class AddNewTests {
         wd.findElement(By.name("new_group")).click();
     }
 
-    private void fillAniversaryInfo(aniversaryDataGroup aniversaryDataGroup) {
+    private void fillAniversaryInfo(AniversaryData aniversaryDataGroup) {
         wd.findElement(By.name("aday")).click();
         new Select(wd.findElement(By.name("aday"))).selectByVisibleText(aniversaryDataGroup.getaDay());
         wd.findElement(By.name("aday")).click();
@@ -79,16 +84,16 @@ public class AddNewTests {
         wd.findElement(By.name("ayear")).sendKeys(aniversaryDataGroup.getaYear());
     }
 
-    private void fillBirthdayInfo(birthdayGroup birthdayGroup) {
+    private void fillBirthdayInfo(BirthdayData BirthdayData) {
         wd.findElement(By.name("bday")).click();
-        new Select(wd.findElement(By.name("bday"))).selectByVisibleText(birthdayGroup.getbDay());
+        new Select(wd.findElement(By.name("bday"))).selectByVisibleText(BirthdayData.getbDay());
         wd.findElement(By.name("bday")).click();
         wd.findElement(By.name("bmonth")).click();
-        new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(birthdayGroup.getbMonth());
+        new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(BirthdayData.getbMonth());
         wd.findElement(By.name("bmonth")).click();
         wd.findElement(By.name("byear")).click();
         wd.findElement(By.name("byear")).clear();
-        wd.findElement(By.name("byear")).sendKeys(birthdayGroup.getbYear());
+        wd.findElement(By.name("byear")).sendKeys(BirthdayData.getbYear());
     }
 
     private void fillHomePage(String homePageAddress) {
@@ -97,43 +102,43 @@ public class AddNewTests {
         wd.findElement(By.name("homepage")).sendKeys(homePageAddress);
     }
 
-    private void fillEmails(emailsGroup emailsGroup) {
+    private void fillEmails(EmailsData EmailsData) {
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(emailsGroup.getEmail_1());
+        wd.findElement(By.name("email")).sendKeys(EmailsData.getEmail_1());
         wd.findElement(By.name("email2")).click();
         wd.findElement(By.name("email2")).clear();
-        wd.findElement(By.name("email2")).sendKeys(emailsGroup.getEmail_2());
+        wd.findElement(By.name("email2")).sendKeys(EmailsData.getEmail_2());
         wd.findElement(By.name("email3")).click();
         wd.findElement(By.name("email3")).clear();
-        wd.findElement(By.name("email3")).sendKeys(emailsGroup.getEmail_3());
+        wd.findElement(By.name("email3")).sendKeys(EmailsData.getEmail_3());
     }
 
-    private void fillPhones(phonesGroup phonesGroup) {
+    private void fillPhones(PhonesData PhonesData) {
         wd.findElement(By.name("home")).click();
         wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys(phonesGroup.getHomePhone());
+        wd.findElement(By.name("home")).sendKeys(PhonesData.getHomePhone());
         wd.findElement(By.name("mobile")).click();
         wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(phonesGroup.getMobilePhone());
+        wd.findElement(By.name("mobile")).sendKeys(PhonesData.getMobilePhone());
         wd.findElement(By.name("work")).click();
         wd.findElement(By.name("work")).clear();
-        wd.findElement(By.name("work")).sendKeys(phonesGroup.getWorkPhone());
+        wd.findElement(By.name("work")).sendKeys(PhonesData.getWorkPhone());
         wd.findElement(By.name("fax")).click();
         wd.findElement(By.name("fax")).clear();
-        wd.findElement(By.name("fax")).sendKeys(phonesGroup.getFax());
+        wd.findElement(By.name("fax")).sendKeys(PhonesData.getFax());
         wd.findElement(By.name("phone2")).click();
         wd.findElement(By.name("phone2")).clear();
-        wd.findElement(By.name("phone2")).sendKeys(phonesGroup.getPhone2());
+        wd.findElement(By.name("phone2")).sendKeys(PhonesData.getPhone2());
     }
 
-    private void fillAddressInf(addressessGroup addressessGroup) {
+    private void fillAddressInf(AddressData AddressData) {
         wd.findElement(By.name("address")).click();
         wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(addressessGroup.getAddressFist());
+        wd.findElement(By.name("address")).sendKeys(AddressData.getAddressFist());
         wd.findElement(By.name("address2")).click();
         wd.findElement(By.name("address2")).clear();
-        wd.findElement(By.name("address2")).sendKeys(addressessGroup.getAdressSecond());
+        wd.findElement(By.name("address2")).sendKeys(AddressData.getAdressSecond());
     }
 
     private void fillCompanyName(String companyName) {
