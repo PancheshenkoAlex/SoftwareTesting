@@ -9,7 +9,7 @@ public class AddressData {
         this.adressSecond = adressSecond;
     }
 
-    public String getAddressFist() {
+    public String getAddressFirst() {
         return addressFist;
     }
 
