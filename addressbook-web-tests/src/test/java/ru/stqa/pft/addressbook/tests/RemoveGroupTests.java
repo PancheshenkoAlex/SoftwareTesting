@@ -8,9 +8,9 @@ public class RemoveGroupTests extends TestBase {
     @Test
     public void testRemoveGroup() throws Exception {
         application.goToGroupPage();
-        application.selectFirstGroup();
-        application.deleteGroup();
-        application.returnToGroupPage();
+        application.getGroupHelper().selectFirstGroup();
+        application.getGroupHelper().deleteGroup();
+        application.getGroupHelper().returnToGroupPage();
     }
 
 }
