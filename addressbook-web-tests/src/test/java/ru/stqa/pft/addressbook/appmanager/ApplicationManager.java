@@ -13,6 +13,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
+    private SessionHelper sessionHelper;
 
     public void init() {
         wd = new ChromeDriver();
@@ -21,20 +22,10 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
-
-        login("admin", "secret");
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin", "secret");
     }
 
-    private void login(String loginName, String pass) {
-        wd.get("http://localhost/addressbook/");
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(loginName);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(pass);
-        wd.findElement(By.xpath("//input[@value='LOGIN']")).click();
-    }
 
     public void exit() {
         wd.quit();
