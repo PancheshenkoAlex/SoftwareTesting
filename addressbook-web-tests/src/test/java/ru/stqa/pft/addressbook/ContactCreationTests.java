@@ -2,11 +2,11 @@ package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.*;
 
-public class AddNewTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
 
     @Test
-    public void testUntitledTestCase() throws Exception {
+    public void AddNewContactTest() throws Exception {
         goToAddNewPage();
         fillPersonalData(new PersonalData("Aleksandra", "n/a", "Pancheshenko", "n/a"));
         addTitle("testTitle");
