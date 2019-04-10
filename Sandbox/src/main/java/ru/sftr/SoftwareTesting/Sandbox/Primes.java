@@ -32,11 +32,7 @@ public class Primes {
 
     public static boolean isPrimeWhile(int n) {
         int i = 2;
-        while (1 < n) {
-            if (n % i == 0) {
-                return false;
-            }
-
+        while (i < n && n % i != 0) {
             i++;
         }
 
