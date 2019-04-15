@@ -81,6 +81,7 @@ public class ContactHelper extends HelperBase {
         clickRemoveButton();
         returnToHomePage();
     }
+
     private void returnToHomePage() {
         click(By.linkText("HOME"));
     }
@@ -98,8 +99,13 @@ public class ContactHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
             String name = element.getText();
-            ContactData contact = new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1");
-            contacts.add(contact);
+            contacts.add(new ContactData()
+                    .withFirstname("Aleks")
+                    .withLastname("Panch")
+                    .withAddressFirst("Poland")
+                    .withPhoneHome("111")
+                    .withEmail("p@ya.ru")
+                    .withGroup("Group_1"));
         }
         return contacts;
     }

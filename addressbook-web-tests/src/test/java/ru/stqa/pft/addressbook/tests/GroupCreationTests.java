@@ -19,13 +19,13 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() throws Exception {
 
         List<GroupData> before = app.group().list();
-        GroupData groupData = new GroupData("Group_1", null, null);
-        app.group().createNew(groupData);
+        GroupData group = new GroupData().withGroupName("Group_1");
+        app.group().createNew(group);
         List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
-        groupData.setID(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-        before.add(groupData);
+        group.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+        before.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);
         after.sort(byId);

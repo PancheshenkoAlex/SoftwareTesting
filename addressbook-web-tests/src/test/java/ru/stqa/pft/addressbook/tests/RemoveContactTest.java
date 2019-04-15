@@ -15,7 +15,13 @@ public class RemoveContactTest extends TestBase {
         app.goTo().HomePage();
         if (app.contact().list().size() == 0) {
             app.goTo().AddNewPage();
-            app.contact().createNew(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
+            app.contact().createNew(new ContactData()
+                    .withFirstname("Aleks")
+                    .withLastname("Panch")
+                    .withAddressFirst("Poland")
+                    .withPhoneHome("111")
+                    .withEmail("p@ya.ru")
+                    .withGroup("Group_1"), true);
             app.goTo().HomePage();
         }
     }

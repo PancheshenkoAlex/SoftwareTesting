@@ -14,7 +14,7 @@ public class RemoveGroupTests extends TestBase {
         app.goTo().GroupPage();
 
         if (app.group().list().size() == 0) {
-            app.group().createNew(new GroupData("Group_1", null, null));
+            app.group().createNew(new GroupData().withGroupName("Group_1"));
         }
 
     }
