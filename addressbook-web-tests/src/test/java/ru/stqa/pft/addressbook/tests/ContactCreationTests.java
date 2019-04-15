@@ -11,18 +11,18 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        application.getNavigationHelper().goToHomePage();
+        app.goTo().HomePage();
     }
 
     @Test
     public void AddNewContactTest() throws Exception {
 
-        List<ContactData> before = application.getContactHelper().getContactList();
-        application.getNavigationHelper().goToAddNewPage();
+        List<ContactData> before = app.contact().list();
+        app.goTo().AddNewPage();
         ContactData contact = new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1");
-        application.getContactHelper().createContact(contact, true);
-        application.getNavigationHelper().goToHomePage();
-        List<ContactData> after = application.getContactHelper().getContactList();
+        app.contact().createNew(contact, true);
+        app.goTo().HomePage();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

@@ -12,16 +12,16 @@ public class GroupCreationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        application.getNavigationHelper().goToGroupPage();
+        app.goTo().GroupPage();
     }
 
     @Test
     public void testGroupCreation() throws Exception {
 
-        List<GroupData> before = application.getGroupHelper().getGroupList();
+        List<GroupData> before = app.group().list();
         GroupData groupData = new GroupData("Group_1", null, null);
-        application.getGroupHelper().createGroup(groupData);
-        List<GroupData> after = application.getGroupHelper().getGroupList();
+        app.group().createNew(groupData);
+        List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         groupData.setID(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

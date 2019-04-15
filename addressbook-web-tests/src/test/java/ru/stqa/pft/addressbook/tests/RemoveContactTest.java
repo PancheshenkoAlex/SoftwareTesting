@@ -12,22 +12,22 @@ public class RemoveContactTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        application.getNavigationHelper().goToHomePage();
-        if (!application.getContactHelper().isThereAContact()) {
-            application.getNavigationHelper().goToAddNewPage();
-            application.getContactHelper().createContact(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
-            application.getNavigationHelper().goToHomePage();
+        app.goTo().HomePage();
+        if (app.contact().list().size() == 0) {
+            app.goTo().AddNewPage();
+            app.contact().createNew(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
+            app.goTo().HomePage();
         }
     }
 
     @Test
     public void testRemoveContact() {
 
-        List<ContactData> before = application.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        application.getContactHelper().removeSelectedContact(index);
-        List<ContactData> after = application.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), index);
+        app.contact().removeSelected(index);
+        List<ContactData> after = app.contact().list();
+        Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(index);
         Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
@@ -41,17 +41,17 @@ public class RemoveContactTest extends TestBase {
 /*
     @Test
     public void testRemoveContactWhileModification() {
-        application.getNavigationHelper().goToHomePage();
-        if (!application.getContactHelper().isThereAContact()) {
-            application.getNavigationHelper().goToAddNewPage();
-            application.getContactHelper().createContact(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
-            application.getNavigationHelper().goToHomePage();
+        app.goTo().HomePage();
+        if (!app.contact().isThereAContact()) {
+            app.goTo().AddNewPage();
+            app.contact().createNew(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
+            app.goTo().HomePage();
         }
-        List<ContactData> before = application.getContactHelper().getContactList();
-        application.getContactHelper().clickEditButton();
-        application.getContactHelper().clickDeleteWhileModification();
-        application.getNavigationHelper().goToHomePage();
-        List<ContactData> after = application.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
+        app.contact().clickEditButton();
+        app.contact().clickDeleteWhileModification();
+        app.goTo().HomePage();
+        List<ContactData> after = app.contact().list();
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
 
@@ -60,15 +60,15 @@ public class RemoveContactTest extends TestBase {
 
     @Test
     public void testRemoveAllRecords() {
-        application.getNavigationHelper().goToHomePage();
-        if (!application.getContactHelper().isThereAContact()) {
-            application.getNavigationHelper().goToAddNewPage();
-            application.getContactHelper().createContact(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
-            application.getNavigationHelper().goToHomePage();
+        app.goTo().HomePage();
+        if (!app.contact().isThereAContact()) {
+            app.goTo().AddNewPage();
+            app.contact().createNew(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
+            app.goTo().HomePage();
         }
 
-        application.getContactHelper().selectAllRecords();
-        application.getContactHelper().clickRemoveButton();
+        app.contact().selectAllRecords();
+        app.contact().clickRemoveButton();
 
     }*/
 }

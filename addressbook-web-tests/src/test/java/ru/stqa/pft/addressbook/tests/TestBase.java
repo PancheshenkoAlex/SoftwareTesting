@@ -8,16 +8,16 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 public class TestBase {
 
 
-    protected static final ApplicationManager application = new ApplicationManager(BrowserType.CHROME);
+    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeSuite
     public void setUp() throws Exception {
-        application.init();
+        app.init();
     }
 
     @AfterSuite
     public void tearDown() throws Exception {
-        application.exit();
+        app.exit();
 
     }
 

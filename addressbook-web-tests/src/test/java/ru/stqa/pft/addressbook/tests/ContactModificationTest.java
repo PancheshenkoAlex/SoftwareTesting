@@ -11,23 +11,23 @@ import java.util.List;
 
 public class ContactModificationTest extends TestBase {
     @BeforeMethod
-    public void ensurePreconditions(){
-        application.getNavigationHelper().goToHomePage();
-        if (!application.getContactHelper().isThereAContact()) {
-            application.getNavigationHelper().goToAddNewPage();
-            application.getContactHelper().createContact(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
-            application.getNavigationHelper().goToHomePage();
+    public void ensurePreconditions() {
+        app.goTo().HomePage();
+        if (app.contact().list().size() == 0) {
+            app.goTo().AddNewPage();
+            app.contact().createNew(new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1"), true);
+            app.goTo().HomePage();
         }
     }
 
     @Test
     public void testContactModification() {
 
-        List<ContactData> before = application.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
         ContactData contact = new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", null);
-        application.getContactHelper().modifyContact(contact);
-        List<ContactData> after = application.getContactHelper().getContactList();
+        app.contact().modify(contact);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(index);
@@ -39,8 +39,6 @@ public class ContactModificationTest extends TestBase {
 
 
     }
-
-
 
 
 }
