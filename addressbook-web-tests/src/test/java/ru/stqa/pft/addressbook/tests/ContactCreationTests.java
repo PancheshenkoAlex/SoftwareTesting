@@ -9,10 +9,14 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
+    @BeforeMethod
+    public void ensurePreconditions() {
+        application.getNavigationHelper().goToHomePage();
+    }
 
     @Test
     public void AddNewContactTest() throws Exception {
-        application.getNavigationHelper().goToHomePage();
+
         List<ContactData> before = application.getContactHelper().getContactList();
         application.getNavigationHelper().goToAddNewPage();
         ContactData contact = new ContactData("Aleks", "Panch", "Poland", "111", "p@ya.ru", "Group_1");
