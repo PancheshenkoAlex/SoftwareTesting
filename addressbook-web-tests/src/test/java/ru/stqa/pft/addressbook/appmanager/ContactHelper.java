@@ -50,8 +50,8 @@ public class ContactHelper extends HelperBase {
         click(By.id("MassCB"));
     }
 
-    public void clickEditButton() {
-        click(By.xpath("//img[@title = 'EDIT']"));
+    public void clickEditButton(int index) {
+        wd.findElements(By.xpath("//img[@title = 'EDIT']")).get(index).click();
     }
 
     public void clickUpdateButton() {
@@ -69,8 +69,8 @@ public class ContactHelper extends HelperBase {
         submitNewContactForm();
     }
 
-    public void modify(ContactData contact) {
-        clickEditButton();
+    public void modify(int index, ContactData contact) {
+        clickEditButton(index);
         fillContactData(contact, false);
         clickUpdateButton();
         returnToHomePage();
@@ -98,13 +98,20 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
-            String name = element.getText();
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            String address = cells.get(3).getText();
+            String phoneHome = cells.get(5).getText();
+            String email = cells.get(4).getText();
+
+
             contacts.add(new ContactData()
-                    .withFirstname("Aleks")
-                    .withLastname("Panch")
-                    .withAddressFirst("Poland")
-                    .withPhoneHome("111")
-                    .withEmail("p@ya.ru")
+                    .withFirstname(firstname)
+                    .withLastname(lastname)
+                    .withAddressFirst(address)
+                    .withPhoneHome(phoneHome)
+                    .withEmail(email)
                     .withGroup("Group_1"));
         }
         return contacts;

@@ -32,12 +32,13 @@ public class ContactModificationTest extends TestBase {
         List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
         ContactData contact = new ContactData()
+                .withId(before.get(index).getId())
                 .withFirstname("Aleks")
                 .withLastname("Panch")
                 .withAddressFirst("Poland")
                 .withPhoneHome("111")
                 .withEmail("p@ya.ru");
-        app.contact().modify(contact);
+        app.contact().modify(index, contact);
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size());
 
