@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -36,8 +33,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+
+    private void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+
     }
 
     public void clickRemoveButton() {
@@ -46,22 +45,15 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void selectAllRecords() {
-        click(By.id("MassCB"));
-    }
+    public void clickEditButtonById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).findElement(By.xpath("//img[@title = 'EDIT']")).click();
 
-    public void clickEditButton(int index) {
-        wd.findElements(By.xpath("//img[@title = 'EDIT']")).get(index).click();
     }
 
     public void clickUpdateButton() {
         click(By.xpath("//input[@value = 'UPDATE']"));
     }
 
-    public void clickDeleteWhileModification() {
-        click(By.xpath("//input[@value = 'DELETE']"));
-
-    }
 
     public void createNew(ContactData contact, boolean b) {
 
@@ -69,15 +61,16 @@ public class ContactHelper extends HelperBase {
         submitNewContactForm();
     }
 
-    public void modify(int index, ContactData contact) {
-        clickEditButton(index);
+    public void modify(ContactData contact) {
+        clickEditButtonById(contact.getId());
         fillContactData(contact, false);
         clickUpdateButton();
         returnToHomePage();
     }
 
-    public void removeSelected(int index) {
-        selectContact(index);
+
+    public void removeSelected(ContactData contact) {
+        selectContactById(contact.getId());
         clickRemoveButton();
         returnToHomePage();
     }
@@ -94,8 +87,8 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
             List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -104,9 +97,9 @@ public class ContactHelper extends HelperBase {
             String address = cells.get(3).getText();
             String phoneHome = cells.get(5).getText();
             String email = cells.get(4).getText();
-
-
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData()
+                    .withId(id)
                     .withFirstname(firstname)
                     .withLastname(lastname)
                     .withAddressFirst(address)
@@ -115,5 +108,8 @@ public class ContactHelper extends HelperBase {
                     .withGroup("Group_1"));
         }
         return contacts;
+
+
     }
 }
+
